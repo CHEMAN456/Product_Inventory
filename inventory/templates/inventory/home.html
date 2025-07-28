@@ -1,0 +1,41 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="mb-4">Welcome to the Warehouse Inventory System</h1>
+
+    <div class="row justify-content-center g-4">
+        <div class="col-md-3">
+            <div class="card border-primary shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">📦 Products</h5>
+                    <p class="card-text">View and manage product catalog.</p>
+                    <a href="{% url 'inventory:prod_list' %}" class="btn btn-primary">Go to Products</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-success shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">🔄 Transactions</h5>
+                    <p class="card-text">Track stock in and stock out.</p>
+                    <a href="{% url 'inventory:trans_list' %}" class="btn btn-success">View Transactions</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-warning shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">📊 Inventory</h5>
+                    <p class="card-text">Check available stock levels.</p>
+                    <a href="{% url 'inventory:inventory_list' %}" class="btn btn-warning">View Inventory</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}Create Transaction{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Create Transaction</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="border p-3 mb-4">
+            <legend>Transaction Info</legend>
+            {{ main_form.as_p }}
+        </fieldset>
+
+    <fieldset class="border p-3 mb-4">
+        <legend>Product Details</legend>
+
+        {{ formset.management_form }}  
+
+        {% for form in formset %}
+            <div class="form-row mb-3">
+                {{ form.product.label_tag }} {{ form.product }}
+                {{ form.quantity.label_tag }} {{ form.quantity }}
+            </div>
+        {% endfor %}
+    </fieldset>
+
+        <button type="submit" class="btn btn-success">Save Transaction</button>
+        <a href="{% url 'inventory:trans_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

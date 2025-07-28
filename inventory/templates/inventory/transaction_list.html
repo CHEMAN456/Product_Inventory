@@ -1,0 +1,47 @@
+{% extends 'inventory/base.html' %}
+{% block title %}All Transactions{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>All Stock Transactions</h2>
+        <a href="{% url 'inventory:create_transaction' %}" class="btn btn-primary">+ New Transaction</a>
+    </div>
+
+    {% if transactions %}
+        {% for txn in transactions %}
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header text-white {% if txn.transaction_type == 'In' %}bg-success{% else %}bg-danger{% endif %}">
+                    <strong>{{ txn.transaction_type }}</strong> - {{ txn.reference_number }} 
+                    <span class="float-end">{{ txn.timestamp|date:"d M Y, h:i A" }}</span>
+                </div>
+                <div class="card-body">
+                    <p><strong>Notes:</strong> {{ txn.notes|default:"—" }}</p>
+                    <table class="table table-bordered table-sm mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Product</th>
+                                <th>SKU</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in txn.details.all %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ item.product.prod_name }}</td>
+                                <td>{{ item.product.sku }}</td>
+                                <td>{{ item.quantity }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No transactions recorded yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

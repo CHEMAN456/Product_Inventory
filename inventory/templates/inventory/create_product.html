@@ -1,0 +1,31 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Add New Product</h2>
+
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'inventory:prod_list' %}" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>
+{% endblock %}

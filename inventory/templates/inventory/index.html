@@ -1,0 +1,15 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4 mt-5">Welcome to the Warehouse Inventory System</h1>
+    <p class="lead mt-3">Track your stock movements and manage inventory efficiently.</p>
+
+    <div class="mt-4">
+        <a href="{% url 'users:login' %}" class="btn btn-primary btn-lg me-2">Login</a>
+        <a href="{% url 'users:register' %}" class="btn btn-outline-secondary btn-lg">Register</a>
+    </div>
+</div>
+{% endblock %}
