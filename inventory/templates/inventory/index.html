@@ -3,6 +3,11 @@
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
+    {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
 <div class="text-center">
     <h1 class="display-4 mt-5">Welcome to the Warehouse Inventory System</h1>
     <p class="lead mt-3">Track your stock movements and manage inventory efficiently.</p>

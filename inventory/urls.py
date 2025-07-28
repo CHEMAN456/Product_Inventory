@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path,include
 from rest_framework.routers import DefaultRouter
-from .views import home_view,index_view,create_product,product_list,create_transaction,inventory_status,transaction_list,trigger_migration,ProductViewSet,TransactionViewSet
+from .views import home_view,index_view,create_product,product_list,create_transaction,inventory_status,transaction_list,ProductViewSet,TransactionViewSet
 
 
 app_name = 'inventory'
@@ -22,7 +22,6 @@ urlpatterns = [
     path('home/create_transaction/',create_transaction, name='create_transaction'),
     path('home/inventory/',inventory_status , name='inventory_list'),
     path('home/transaction/',transaction_list , name='trans_list'),
-    path('trigger-migration/', trigger_migration, name='trigger_migration'),
     path('api/', include(router.urls)),
        
 ]

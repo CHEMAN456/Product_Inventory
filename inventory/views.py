@@ -9,9 +9,8 @@ from rest_framework import viewsets
 from .serializers import Prod_serializer,StckDetailSerializer,StckMainSerializer
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
-from django.http import HttpResponse
-from django.core.management import call_command
-from django.contrib.admin.views.decorators import staff_member_required
+
+
 
 # Create your views here.
 
@@ -128,7 +127,4 @@ class TransactionDetailViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     
     
-@staff_member_required
-def trigger_migration(request):
-    call_command('migrate')
-    return HttpResponse("Migration completed.")    
+ 
