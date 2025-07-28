@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,16 +77,22 @@ WSGI_APPLICATION = 'products.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# Default to local DB
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'war_in',
-        'USER':'postgres',
-        'PASSWORD':'Csm@772',
-        'HOST':'localhost',
-        'PORT':'5432'
+        'USER': 'postgres',
+        'PASSWORD': 'Csm@772',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
+# Override with DATABASE_URL if set (for Render or other prod environments)
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if DATABASE_URL:
+    DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
 
 
 # Password validation
