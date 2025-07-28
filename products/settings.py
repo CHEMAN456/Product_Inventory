@@ -80,19 +80,11 @@ WSGI_APPLICATION = 'products.wsgi.application'
 # Default to local DB
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'war_in',
-        'USER': 'postgres',
-        'PASSWORD': 'Csm@772',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-# Override with DATABASE_URL if set (for Render or other prod environments)
-DATABASE_URL = os.environ.get('DATABASE_URL')
-if DATABASE_URL:
-    DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
 
 
 # Password validation
