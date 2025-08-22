@@ -9,8 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-def register_view(request):
-    
+def register_view(request):    
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         
