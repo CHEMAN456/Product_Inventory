@@ -122,7 +122,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
+# Where Django will collect all static files for production (Gunicorn + Nginx)
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_collected')
+
+# Where Django will look for app-specific static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,  'staticfiles'),
+]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
